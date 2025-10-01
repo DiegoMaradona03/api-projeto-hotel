@@ -12,32 +12,32 @@ routes.get('/', (req, res) => {
   return res.json({ titulo: 'Hotel' });
 });
 
-routes.post('/api/login', loginController.login);
-routes.get('/api/login', loginController.validaToken);
+routes.post('/login', loginController.login);
+routes.get('/login', loginController.validaToken);
 
-routes.get('/api/usuarios', MiddlewareAuth.validate, Usuario.read);
-routes.get('/api/usuarios/:id', MiddlewareAuth.validate, Usuario.readOne);
-routes.post('/api/usuarios', Usuario.create);
-routes.patch('/api/usuarios', Usuario.reset);
-routes.patch('/api/usuarios/:id', MiddlewareAuth.validate, Usuario.update);
-routes.delete('/api/usuarios/:id', MiddlewareAuth.validate, Usuario.remove);
+routes.get('/usuarios', MiddlewareAuth.validate, Usuario.read);
+routes.get('/usuarios/:id', MiddlewareAuth.validate, Usuario.readOne);
+routes.post('/usuarios', Usuario.create);
+routes.patch('/usuarios', Usuario.reset);
+routes.patch('/usuarios/:id', MiddlewareAuth.validate, Usuario.update);
+routes.delete('/usuarios/:id', MiddlewareAuth.validate, Usuario.remove);
 
-routes.get('/api/telefones', MiddlewareAuth.validate, Telefone.read);
-routes.get('/api/telefones/:id', MiddlewareAuth.validate, Telefone.readOne);
-routes.post('/api/telefones', Telefone.create);
-routes.patch('/api/telefones/:id', MiddlewareAuth.validate, Telefone.update);
-routes.delete('/api/telefones/:id', MiddlewareAuth.validate, Telefone.remove);
+routes.get('/telefones', Telefone.read);
+routes.get('/telefones/:id', Telefone.readOne);
+routes.post('/telefones', Telefone.create);
+routes.patch('/telefones/:id', Telefone.update);
+routes.delete('/telefones/:id', Telefone.remove);
 
-routes.get('/api/quartos', MiddlewareAuth.validate, Quarto.read);
-routes.get('/api/quartos/:id', MiddlewareAuth.validate, Quarto.readOne);
-routes.post('/api/quartos', MiddlewareAuth.validate, Quarto.create);
-routes.patch('/api/quartos/:id', MiddlewareAuth.validate, Quarto.update);
-routes.delete('/api/quartos/:id', MiddlewareAuth.validate, Quarto.remove);
+routes.get('/quartos', Quarto.read);
+routes.get('/quartos/:id', Quarto.readOne);
+routes.post('/quartos', Quarto.create);
+routes.patch('/quartos/:id', Quarto.update);
+routes.delete('/quartos/:id', Quarto.remove);
 
-routes.get('/api/reservas', MiddlewareAuth.validate, Reserva.read);
-routes.get('/api/reservas/:id', MiddlewareAuth.validate, Reserva.readOne);
-routes.post('/api/reservas', MiddlewareAuth.validate, Reserva.create);
-routes.patch('/api/reservas/:id', MiddlewareAuth.validate, Reserva.update);
-routes.delete('/api/reservas/:id', MiddlewareAuth.validate, Reserva.remove);
+routes.get('/reservas', Reserva.read);
+routes.get('/reservas/:id', Reserva.readOne);
+routes.post('/reservas', Reserva.create);
+routes.patch('/reservas/:id', Reserva.update);
+routes.delete('/reservas/:id', Reserva.remove);
 
 module.exports = routes;

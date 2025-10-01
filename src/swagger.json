@@ -80,7 +80,7 @@
                 }
             }
         },
-        "/api/login": {
+        "/login": {
             "get": {
                 "tags": [
                     "Rotas de Login"
@@ -139,7 +139,7 @@
                 }
             }
         },
-        "/api/usuarios": {
+        "/usuarios": {
             "get": {
                 "tags": [
                     "CRUD de Usuarios"
@@ -229,7 +229,7 @@
                 }
             }
         },
-        "/api/usuarios/{id}": {
+        "/usuarios/{id}": {
             "get": {
                 "tags": [
                     "CRUD de Usuarios"
@@ -384,7 +384,7 @@
                 }
             }
         },
-        "/api/telefones": {
+        "/telefones": {
             "get": {
                 "tags": [
                     "CRUD de Telefones"
@@ -436,7 +436,7 @@
                 }
             }
         },
-        "/api/telefones/{id}": {
+        "/telefones/{id}": {
             "get": {
                 "tags": [
                     "CRUD de Telefones"
@@ -572,7 +572,7 @@
                 }
             }
         },
-        "/api/quartos": {
+        "/quartos": {
             "get": {
                 "tags": [
                     "CRUD de Quartos"
@@ -632,7 +632,7 @@
                 }
             }
         },
-        "/api/quartos/{id}": {
+        "/quartos/{id}": {
             "get": {
                 "tags": [
                     "CRUD de Quartos"
@@ -784,7 +784,7 @@
                 }
             }
         },
-        "/api/reservas": {
+        "/reservas": {
             "get": {
                 "tags": [
                     "CRUD de Reservas"
@@ -848,7 +848,7 @@
                 }
             }
         },
-        "/api/reservas/{id}": {
+        "/reservas/{id}": {
             "get": {
                 "tags": [
                     "CRUD de Reservas"
