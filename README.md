@@ -15,7 +15,6 @@ Projeto TCC aplicativo de gerência de hospedagens em um Hotel.
 - 2 Crie um arquivo .env na raiz contendo o conteúdo a seguir:
 ```js
 DATABASE_URL="mysql://root@localhost:3306/hotel"
-PORT=3600
 SECRET_JWT="minha-chave-secreta"
 ```
 - 3 Abra com o VsCode e abra um terminal **CMD** ou **bash** e instale as dependências
