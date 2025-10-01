@@ -1,0 +1,450 @@
+type: collection.insomnia.rest/5.0
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1741696952284
+  modified: 1741696952284
+  description: ""
+collection:
+  - name: PetShop
+    meta:
+      id: fld_47d30c8388454c7e97bd0b54f084bfc8
+      created: 1742911300081
+      modified: 1742924585457
+      sortKey: -1742911300081
+      description: ""
+    children:
+      - name: Cliente
+        meta:
+          id: fld_0e604fc10e8640f3afda223a2da6435f
+          created: 1742911315634
+          modified: 1742924583970
+          sortKey: -1742911326088
+          description: ""
+      - name: Pedido
+        meta:
+          id: fld_04aaa55b70cd4e71b5ee2a8040817f06
+          created: 1742926331749
+          modified: 1742926356295
+          sortKey: -1742911313084.5
+          description: ""
+      - name: Telefone
+        meta:
+          id: fld_84ad86d11f76406ab6a6676110ac346d
+          created: 1742926343664
+          modified: 1742926469534
+          sortKey: -1742911306582.75
+          description: ""
+  - name: Hamburgueria
+    meta:
+      id: fld_4329eb577129498aaf2eb9a432718069
+      created: 1746035318358
+      modified: 1746035318358
+      sortKey: -1746035318358
+      description: ""
+    children:
+      - name: Cliente
+        meta:
+          id: fld_43e098d89fd3441c91ebcf7fa84410f5
+          created: 1746035415712
+          modified: 1746035426111
+          sortKey: -1746035361789
+          description: ""
+      - name: Hamburguer
+        meta:
+          id: fld_efae7d9d4b8f461d8add88b7f8d77a78
+          created: 1746035490390
+          modified: 1746035513990
+          sortKey: -1746035356360.125
+          description: ""
+      - name: Pedido
+        meta:
+          id: fld_68a519deb47846e882965a72e706deef
+          created: 1746035504935
+          modified: 1746035504935
+          sortKey: -1746035350931.25
+          description: ""
+  - name: Loja de Teste
+    meta:
+      id: fld_f009740e74a547228148d4733d2e2753
+      created: 1746625694503
+      modified: 1747164879196
+      sortKey: -1746625694503
+      description: ""
+    children:
+      - name: Usuario
+        meta:
+          id: fld_6bb0544d254946c98f94123655123b05
+          created: 1746625738279
+          modified: 1747164891616
+          sortKey: -1746625749642
+          description: ""
+      - name: Pedido
+        meta:
+          id: fld_26897139c5f147279ba57d93f791e920
+          created: 1746625872483
+          modified: 1747164922260
+          sortKey: -1746625722072.5
+          description: ""
+      - name: Produto
+        meta:
+          id: fld_96b5a12dba514c858dcc0a3cc2a565e3
+          created: 1746625890238
+          modified: 1747164916613
+          sortKey: -1746625708287.75
+          description: ""
+      - name: Telefone
+        meta:
+          id: fld_1c0e4e35cfe74362a3430998817b5477
+          created: 1747164928337
+          modified: 1747164946659
+          sortKey: -1746625701395.375
+          description: ""
+      - name: Item
+        meta:
+          id: fld_eb03722967894094b822716ec2e01491
+          created: 1747164933753
+          modified: 1747164959656
+          sortKey: -1746625697949.1875
+          description: ""
+  - name: App 88 Taxi
+    meta:
+      id: fld_82c7b2f28e2e4cdeacb78039452eadd8
+      created: 1747164847415
+      modified: 1747164847415
+      sortKey: -1746330528146
+      description: ""
+    children:
+      - name: Passageiro
+        meta:
+          id: fld_165ea189f1f94b3bbf9819f631cc961f
+          created: 1747164847419
+          modified: 1747164847419
+          sortKey: -1746625749642
+          description: ""
+      - name: Motorista
+        meta:
+          id: fld_264e6997789340479da9a80fddb757d6
+          created: 1747164847441
+          modified: 1747164847441
+          sortKey: -1746625722072.5
+          description: ""
+      - name: Viagem
+        meta:
+          id: fld_a115e0ee66cf4a40aa5283e855880c43
+          created: 1747164847465
+          modified: 1747164847465
+          sortKey: -1746625708287.75
+          description: ""
+  - name: Escola
+    meta:
+      id: fld_5c794bd29ed84e309085882eee449fa9
+      created: 1750269123479
+      modified: 1750269123479
+      sortKey: -1746478111324.5
+      description: ""
+    children:
+      - name: Professores
+        meta:
+          id: fld_86fc705dbc4a45a1b53a6b2aa68b68dc
+          created: 1750269123482
+          modified: 1750272338513
+          sortKey: -1746625749642
+          description: ""
+      - name: Alunos
+        meta:
+          id: fld_57b73b072390428dbcb1b0a69531e8af
+          created: 1750269123493
+          modified: 1750272350991
+          sortKey: -1746625722072.5
+          description: ""
+      - name: Matrículas
+        meta:
+          id: fld_dd670e9004c441b2898bc60622272dec
+          created: 1750269123504
+          modified: 1750272452129
+          sortKey: -1746625708287.75
+          description: ""
+      - name: Turmas
+        meta:
+          id: fld_7d915463bb63418192601203e9985aba
+          created: 1750269123514
+          modified: 1750272378069
+          sortKey: -1746625715180.125
+          description: ""
+      - name: Disciplinas
+        meta:
+          id: fld_32d505a927064094af71e23fd60059fc
+          created: 1750269123524
+          modified: 1750272381509
+          sortKey: -1746625711733.9375
+          description: ""
+  - name: API Dummy
+    meta:
+      id: fld_1cde02fab32c4ae989cdf051fdd2e86b
+      created: 1753816460795
+      modified: 1753816977811
+      sortKey: -1753816460795
+      description: ""
+  - name: API Placeholder
+    meta:
+      id: fld_8dfdd8195a2743578ed8db3869e6933f
+      created: 1753885738208
+      modified: 1753885738208
+      sortKey: -1753885738208
+      description: ""
+  - name: pedidosapi
+    meta:
+      id: fld_bee43694fa5e4f48b2a0341d883d75c5
+      created: 1754487670978
+      modified: 1754487670978
+      sortKey: -1754487670978
+      description: ""
+    children:
+      - name: usuarios
+        meta:
+          id: fld_895f36adbd2f47d3a02e68b20df697ff
+          created: 1754487736578
+          modified: 1754487768652
+          sortKey: -1754487684245
+          description: ""
+      - name: produtos
+        meta:
+          id: fld_e57f4bf0858e47e28422f5b522590ef7
+          created: 1754489060611
+          modified: 1754489069474
+          sortKey: -1754487684195
+          description: ""
+      - name: pedidos
+        meta:
+          id: fld_aff05c454b944c059c6bb15600cd75f6
+          created: 1754489092969
+          modified: 1754489108613
+          sortKey: -1754487684070
+          description: ""
+  - name: Login com Dummy
+    meta:
+      id: fld_9104fbc100d94cc7a8d9b41ed0aca1ae
+      created: 1756207826187
+      modified: 1756207829151
+      sortKey: -1755700156339
+      description: ""
+  - name: catalogo-2025
+    meta:
+      id: fld_63241f909dea45dd9a05dadbacdd43d3
+      created: 1756832587964
+      modified: 1756832587964
+      sortKey: -1756832587964
+      description: ""
+    children:
+      - name: Plantas
+        meta:
+          id: fld_2336ef7af65e4d2f9b870938ca3466ab
+          created: 1756839637308
+          modified: 1756839640593
+          sortKey: -1756832598200
+          description: ""
+  - name: Hotel
+    meta:
+      id: fld_448328c2dab84f90b591629e853dd18d
+      created: 1756898259909
+      modified: 1759337259255
+      sortKey: -1756898259910
+      description: ""
+    children:
+      - url: https://api-projeto-hotel.vercel.app/
+        name: TESTE
+        meta:
+          id: req_e94551b2ba3d4aab90e6a4287b72b497
+          created: 1756898239390
+          modified: 1759337073199
+          isPrivate: false
+          description: ""
+          sortKey: -1759336911635
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.5.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - name: Usuarios
+        meta:
+          id: fld_5c8322e2346b4f8cb23f46a1869e1490
+          created: 1759336911535
+          modified: 1759337273118
+          sortKey: -1759336911535
+          description: ""
+        children:
+          - url: https://api-projeto-hotel.vercel.app/usuarios
+            name: READ
+            meta:
+              id: req_196bcf70028045f68bd422825f678ce7
+              created: 1755700156239
+              modified: 1759337107258
+              isPrivate: false
+              description: ""
+              sortKey: -1759336918505
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.4.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: https://api-projeto-hotel.vercel.app/usuarios
+            name: CREATE
+            meta:
+              id: req_d06fec911ef549b184b7f1fd837c5f13
+              created: 1759337119627
+              modified: 1759337165896
+              isPrivate: false
+              description: ""
+              sortKey: -1759336915070
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "nome": "Wellington",
+                  "cpf": "33333333333",
+                  "email": "wellington@email.com",
+                  "senha": "senha123"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.4.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: login
+        meta:
+          id: fld_5df7dc9839b548ac8837ba9ae7241c50
+          created: 1759337180574
+          modified: 1759337180574
+          sortKey: -1758387891770.5
+          description: ""
+        children:
+          - url: https://api-projeto-hotel.vercel.app/login
+            name: VALIDACAO
+            meta:
+              id: req_a388d5bb805e4445b391e66eb340ccee
+              created: 1759337180578
+              modified: 1759337281172
+              isPrivate: false
+              description: ""
+              sortKey: -1759336918505
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.4.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: https://api-projeto-hotel.vercel.app/login
+            name: LOGIN
+            meta:
+              id: req_1e9370c193ae4fc0bc088ae7a7291a10
+              created: 1759337180581
+              modified: 1759337217836
+              isPrivate: false
+              description: ""
+              sortKey: -1759336915070
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "email": "wellington@email.com",
+                  "senha": "senha123",
+                	"validade":30
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.4.0
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwibm9tZSI6IldlbGxpbmd0b24iLCJlbWFpbCI6IndlbGxpbmd0b25AZW1haWwuY29tIiwiaWF0IjoxNzU5MzM2ODk2LCJleHAiOjE3NTkzMzg2OTZ9.YgeWsEQCeY5uNGydTcLmPUV9Vy8b6V2N8teZORC30mc
+  - name: estacionamento vercel
+    meta:
+      id: fld_1eb3d36f81a045d1b0ff26565063f8a4
+      created: 1757438847978
+      modified: 1757438847978
+      sortKey: -1757438847978
+      description: ""
+    children:
+      - name: veiculos
+        meta:
+          id: fld_a7c5faae23ab45b88c87a8f25abda5dc
+          created: 1757438872006
+          modified: 1757438872006
+          sortKey: -1757438872006
+          description: ""
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1741696959604
+    modified: 1756209116936
+  cookies:
+    - key: accessToken
+      value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJlbWlseXMiLCJlbWFpbCI6ImVtaWx5LmpvaG5zb25AeC5kdW1teWpzb24uY29tIiwiZmlyc3ROYW1lIjoiRW1pbHkiLCJsYXN0TmFtZSI6IkpvaG5zb24iLCJnZW5kZXIiOiJmZW1hbGUiLCJpbWFnZSI6Imh0dHBzOi8vZHVtbXlqc29uLmNvbS9pY29uL2VtaWx5cy8xMjgiLCJpYXQiOjE3NTYyMDg4MzcsImV4cCI6MTc1NjIxMDYzN30.ZMOuaukTnO4r_dRl7ce_3J6EU3zN468IBQRIhWhpnYA
+      maxAge: 1800
+      domain: dummyjson.com
+      path: /
+      secure: true
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-07-29T19:27:10.463Z
+      lastAccessed: 2025-08-26T11:51:56.936Z
+      id: 1cf2bc5e-2d10-4180-93ae-7038a8565035
+    - key: refreshToken
+      value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJlbWlseXMiLCJlbWFpbCI6ImVtaWx5LmpvaG5zb25AeC5kdW1teWpzb24uY29tIiwiZmlyc3ROYW1lIjoiRW1pbHkiLCJsYXN0TmFtZSI6IkpvaG5zb24iLCJnZW5kZXIiOiJmZW1hbGUiLCJpbWFnZSI6Imh0dHBzOi8vZHVtbXlqc29uLmNvbS9pY29uL2VtaWx5cy8xMjgiLCJpYXQiOjE3NTYyMDg4MzcsImV4cCI6MTc1ODgwMDgzN30.36rsDOTSBdtkjeR8brnBueRxRcOp9qtznP7G2vSuI6U
+      maxAge: 1800
+      domain: dummyjson.com
+      path: /
+      secure: true
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-07-29T19:27:10.464Z
+      lastAccessed: 2025-08-26T11:51:56.936Z
+      id: d9f05032-e266-4cf9-af56-95949cc70a90
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1741696959521
+    modified: 1741696959521
+    isPrivate: false
