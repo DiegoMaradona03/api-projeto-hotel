@@ -12,8 +12,12 @@
     },
     "servers": [
         {
-            "url": "https://api-projeto-hotel.vercel.app/",
+            "url": "http://localhost:3600",
             "description": "Servidor local"
+        },
+        {
+            "url": "https://api-projeto-hotel.vercel.app/",
+            "description": "Servidor Nuvem Vercel"
         }
     ],
     "securityDefinitions": {
