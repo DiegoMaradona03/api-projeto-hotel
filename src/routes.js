@@ -9,7 +9,13 @@ const loginController = require('./controllers/login');
 const MiddlewareAuth = require('./middlewares/auth');
 
 routes.get('/', (req, res) => {
-  return res.json({ titulo: 'Hotel' });
+  return res.json({ titulo: 'Hotel', versao: '1.0.0', rotas:[
+    {verbo:'post',rota:'/login'},
+    {verbo:'get',rota:'/login'},
+    {verbo:'get',rota:'/usuarios'},
+    {verbo:'get',rota:'/usuarios/:id'},
+    {verbo:'post',rota:'/usuarios'}
+  ]});
 });
 
 routes.post('/login', loginController.login);
