@@ -14,7 +14,7 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
 app.use(routes);
 
-app.listen(port, (req,res) =>{
+app.listen(port, () =>{
     console.log('API respondendo em http://localhost:' + port);
     console.log('Documentação em http://localhost:' + port + '/docs');
 });
