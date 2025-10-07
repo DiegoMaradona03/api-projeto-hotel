@@ -10,11 +10,33 @@ const MiddlewareAuth = require('./middlewares/auth');
 
 routes.get('/', (req, res) => {
   return res.json({ titulo: 'Hotel', versao: '1.0.0', rotas:[
-    {verbo:'post',rota:'/login'},
-    {verbo:'get',rota:'/login'},
-    {verbo:'get',rota:'/usuarios'},
-    {verbo:'get',rota:'/usuarios/:id'},
-    {verbo:'post',rota:'/usuarios'}
+    { verbo: 'POST', rota: '/login' },
+      { verbo: 'GET', rota: '/login' },
+
+      { verbo: 'GET', rota: '/usuarios' },
+      { verbo: 'GET', rota: '/usuarios/:id' },
+      { verbo: 'POST', rota: '/usuarios' },
+      { verbo: 'PATCH', rota: '/usuarios' },
+      { verbo: 'PATCH', rota: '/usuarios/:id' },
+      { verbo: 'DELETE', rota: '/usuarios/:id' },
+
+      { verbo: 'GET', rota: '/telefones' },
+      { verbo: 'GET', rota: '/telefones/:id' },
+      { verbo: 'POST', rota: '/telefones' },
+      { verbo: 'PATCH', rota: '/telefones/:id' },
+      { verbo: 'DELETE', rota: '/telefones/:id' },
+
+      { verbo: 'GET', rota: '/quartos' },
+      { verbo: 'GET', rota: '/quartos/:id' },
+      { verbo: 'POST', rota: '/quartos' },
+      { verbo: 'PATCH', rota: '/quartos/:id' },
+      { verbo: 'DELETE', rota: '/quartos/:id' },
+
+      { verbo: 'GET', rota: '/reservas' },
+      { verbo: 'GET', rota: '/reservas/:id' },
+      { verbo: 'POST', rota: '/reservas' },
+      { verbo: 'PATCH', rota: '/reservas/:id' },
+      { verbo: 'DELETE', rota: '/reservas/:id' }
   ]});
 });
 
