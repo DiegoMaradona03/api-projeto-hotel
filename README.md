@@ -30,7 +30,7 @@ npx prisma migrate dev --name init
 npm run dev
 ```
 
-# Roteiro de Testes da API – Hotel (URLs completas)
+# Roteiro de Testes da API
 
 Base da API: `https://api-projeto-hotel.vercel.app/`
 
