@@ -39,42 +39,42 @@ npm run dev
 ## ✅ Checklist de Testes
 
 ### Testes Gerais
-- [ ] Verificar se o endpoint `/` retorna 200 e informações da API.  
+- [x] Verificar se o endpoint `/` retorna 200 e informações da API.  
 
 ### Testes de Login
-- [ ] Realizar login com credenciais válidas (`POST /login`) → deve retornar token.  
-- [ ] Tentar login com credenciais inválidas → deve retornar 400.  
-- [ ] Validar token (`GET /login`) com token válido → 200.  
-- [ ] Validar token com token inválido ou expirado → 401.  
+- [x] Realizar login com credenciais válidas (`POST /login`) → deve retornar token.  
+- [x] Tentar login com credenciais inválidas → deve retornar 400.  
+- [x] Validar token (`GET /login`) com token válido → 200.  
+- [x] Validar token com token inválido ou expirado → 401.  
 
 ### Testes de Usuários
-- [ ] Criar usuário (`POST /usuarios`) → verificar campos obrigatórios.  
-- [ ] Listar todos usuários (`GET /usuarios`) → deve retornar lista.  
-- [ ] Obter usuário por ID (`GET /usuarios/:id`) → 200 se existir, 404 se não existir.  
-- [ ] Alterar usuário (`PATCH /usuarios/:id`) → campos opcionais.  
-- [ ] Resetar senha (`PATCH /usuarios`) → deve enviar e-mail com senha provisória.  
-- [ ] Deletar usuário (`DELETE /usuarios/:id`) → 204.  
+- [x] Criar usuário (`POST /usuarios`) → verificar campos obrigatórios.  
+- [x] Listar todos usuários (`GET /usuarios`) → deve retornar lista.  
+- [x] Obter usuário por ID (`GET /usuarios/:id`) → 200 se existir, 404 se não existir.  
+- [x] Alterar usuário (`PATCH /usuarios/:id`) → campos opcionais.  
+- [x] Resetar senha (`PATCH /usuarios`) → deve enviar e-mail com senha provisória.  
+- [x] Deletar usuário (`DELETE /usuarios/:id`) → 204.  
 
 ### Testes de Telefones
-- [ ] Criar telefone (`POST /telefones`).  
-- [ ] Listar todos telefones (`GET /telefones`).  
-- [ ] Obter telefone por ID (`GET /telefones/:id`).  
-- [ ] Alterar telefone (`PATCH /telefones/:id`).  
-- [ ] Deletar telefone (`DELETE /telefones/:id`).  
+- [x] Criar telefone (`POST /telefones`).  
+- [x] Listar todos telefones (`GET /telefones`).  
+- [x] Obter telefone por ID (`GET /telefones/:id`).  
+- [x] Alterar telefone (`PATCH /telefones/:id`).  
+- [x] Deletar telefone (`DELETE /telefones/:id`).  
 
 ### Testes de Quartos
-- [ ] Criar quarto (`POST /quartos`).  
-- [ ] Listar todos quartos (`GET /quartos`).  
-- [ ] Obter quarto por ID (`GET /quartos/:id`).  
-- [ ] Alterar quarto (`PATCH /quartos/:id`).  
-- [ ] Deletar quarto (`DELETE /quartos/:id`).  
+- [x] Criar quarto (`POST /quartos`).  
+- [x] Listar todos quartos (`GET /quartos`).  
+- [x] Obter quarto por ID (`GET /quartos/:id`).  
+- [x] Alterar quarto (`PATCH /quartos/:id`).  
+- [x] Deletar quarto (`DELETE /quartos/:id`).  
 
 ### Testes de Reservas
-- [ ] Criar reserva (`POST /reservas`).  
-- [ ] Listar todas reservas (`GET /reservas`).  
-- [ ] Obter reserva por ID (`GET /reservas/:id`).  
-- [ ] Alterar reserva (`PATCH /reservas/:id`) → **dataEntrada** e **dataSaida** permanecem `null`.  
-- [ ] Deletar reserva (`DELETE /reservas/:id`).  
+- [x] Criar reserva (`POST /reservas`).  
+- [x] Listar todas reservas (`GET /reservas`).  
+- [x] Obter reserva por ID (`GET /reservas/:id`).  
+- [x] Alterar reserva (`PATCH /reservas/:id`) → **dataEntrada** e **dataSaida** permanecem `null`.  
+- [x] Deletar reserva (`DELETE /reservas/:id`).  
 
 ---
 
