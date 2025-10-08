@@ -30,333 +30,300 @@ npx prisma migrate dev --name init
 npm run dev
 ```
 
-# API Hotel – Roteiro de Testes (ajustado)
+# Roteiro de Testes API do Hotel (Ajustado)
 
-Base da API: `https://api-projeto-hotel.vercel.app/`
-
-> ⚠️ **Importante:** antes de executar os testes de **login** ou criar reservas, **crie pelo menos um usuário**. O modelo `Usuario` exige `nome`, `cpf`, `email` e `senha` (cpf e email são únicos).
+**Base da API:** `https://api-projeto-hotel.vercel.app/`
 
 ---
 
-## 1. Login
+## ✅ Checklist de Testes
 
-### 1.1 Login válido
+### Testes Gerais
+- [ ] Verificar se o endpoint `/` retorna 200 e informações da API.  
 
-* **Método:** POST
-* **URL:** `https://api-projeto-hotel.vercel.app/login`
-* **Headers:** nenhum
-* **Body (JSON):**
+### Testes de Login
+- [ ] Realizar login com credenciais válidas (`POST /login`) → deve retornar token.  
+- [ ] Tentar login com credenciais inválidas → deve retornar 400.  
+- [ ] Validar token (`GET /login`) com token válido → 200.  
+- [ ] Validar token com token inválido ou expirado → 401.  
 
-```json
-{
-  "email": "usuario@teste.com",
-  "senha": "senha123"
-}
-```
+### Testes de Usuários
+- [ ] Criar usuário (`POST /usuarios`) → verificar campos obrigatórios.  
+- [ ] Listar todos usuários (`GET /usuarios`) → deve retornar lista.  
+- [ ] Obter usuário por ID (`GET /usuarios/:id`) → 200 se existir, 404 se não existir.  
+- [ ] Alterar usuário (`PATCH /usuarios/:id`) → campos opcionais.  
+- [ ] Resetar senha (`PATCH /usuarios`) → deve enviar e-mail com senha provisória.  
+- [ ] Deletar usuário (`DELETE /usuarios/:id`) → 204.  
 
-* **Esperado:** `200 OK` com token JWT.
+### Testes de Telefones
+- [ ] Criar telefone (`POST /telefones`).  
+- [ ] Listar todos telefones (`GET /telefones`).  
+- [ ] Obter telefone por ID (`GET /telefones/:id`).  
+- [ ] Alterar telefone (`PATCH /telefones/:id`).  
+- [ ] Deletar telefone (`DELETE /telefones/:id`).  
 
-### 1.2 Login inválido
+### Testes de Quartos
+- [ ] Criar quarto (`POST /quartos`).  
+- [ ] Listar todos quartos (`GET /quartos`).  
+- [ ] Obter quarto por ID (`GET /quartos/:id`).  
+- [ ] Alterar quarto (`PATCH /quartos/:id`).  
+- [ ] Deletar quarto (`DELETE /quartos/:id`).  
 
-* **Método:** POST
-* **URL:** `https://api-projeto-hotel.vercel.app/login`
-* **Body (JSON):**
-
-```json
-{
-  "email": "usuario@teste.com",
-  "senha": "senhaErrada"
-}
-```
-
-* **Esperado:** `401 Unauthorized` com mensagem de erro.
-
-### 1.3 Validação de token
-
-* **Método:** GET
-* **URL:** `https://api-projeto-hotel.vercel.app/login`
-* **Headers:**
-
-```
-Authorization: Bearer <token_valido>
-```
-
-* **Esperado:** `200 OK` se token válido, `401 Unauthorized` se inválido.
+### Testes de Reservas
+- [ ] Criar reserva (`POST /reservas`).  
+- [ ] Listar todas reservas (`GET /reservas`).  
+- [ ] Obter reserva por ID (`GET /reservas/:id`).  
+- [ ] Alterar reserva (`PATCH /reservas/:id`) → **dataEntrada** e **dataSaida** permanecem `null`.  
+- [ ] Deletar reserva (`DELETE /reservas/:id`).  
 
 ---
 
-## 2. Usuários
+## 1. Teste Geral
 
-> **Campos obrigatórios (conforme Prisma schema):** `nome` (String), `cpf` (String, único), `email` (String, único), `senha` (String).
-> **Observação sobre telefones:** o modelo permite relação `telefone: Telefone[]`. Você pode criar telefones separadamente via `/telefones` ou, caso a API implemente nested create, enviar `telefone: [{ "numero": "..." }]` ao criar o usuário. Se não tiver certeza, use `/telefones` após criar o usuário.
-
-### 2.1 Criar usuário
-
-* **Método:** POST
-* **URL:** `https://api-projeto-hotel.vercel.app/usuarios`
-* **Body (JSON) — exemplo mínimo (obrigatório):**
-
+**GET /**  
+**URL:** `https://api-projeto-hotel.vercel.app/`  
+**Resposta esperada 200:**
 ```json
 {
-  "nome": "Diego",
-  "cpf": "12345678900",
-  "email": "diego@teste.com",
-  "senha": "123456"
-}
-```
-
-* **Body (JSON) — exemplo com telefone (opcional, só se a API suportar nested create):**
-
-```json
-{
-  "nome": "Diego",
-  "cpf": "12345678900",
-  "email": "diego@teste.com",
-  "senha": "123456",
-  "telefone": [
-    { "numero": "(11) 99999-9999" }
+  "titulo": "Hotel",
+  "versao": "1.0.0",
+  "rotas": [
+    { "verbo": "POST", "rota": "/login" },
+    { "verbo": "GET", "rota": "/login" },
+    { "verbo": "GET", "rota": "/usuarios" },
+    { "verbo": "GET", "rota": "/usuarios/:id" },
+    { "verbo": "POST", "rota": "/usuarios" },
+    { "verbo": "PATCH", "rota": "/usuarios" },
+    { "verbo": "PATCH", "rota": "/usuarios/:id" },
+    { "verbo": "DELETE", "rota": "/usuarios/:id" },
+    { "verbo": "GET", "rota": "/telefones" },
+    { "verbo": "GET", "rota": "/telefones/:id" },
+    { "verbo": "POST", "rota": "/telefones" },
+    { "verbo": "PATCH", "rota": "/telefones/:id" },
+    { "verbo": "DELETE", "rota": "/telefones/:id" },
+    { "verbo": "GET", "rota": "/quartos" },
+    { "verbo": "GET", "rota": "/quartos/:id" },
+    { "verbo": "POST", "rota": "/quartos" },
+    { "verbo": "PATCH", "rota": "/quartos/:id" },
+    { "verbo": "DELETE", "rota": "/quartos/:id" },
+    { "verbo": "GET", "rota": "/reservas" },
+    { "verbo": "GET", "rota": "/reservas/:id" },
+    { "verbo": "POST", "rota": "/reservas" },
+    { "verbo": "PATCH", "rota": "/reservas/:id" },
+    { "verbo": "DELETE", "rota": "/reservas/:id" }
   ]
 }
 ```
 
-* **Esperado:** `201 Created` com dados do usuário (id, nome, cpf, email, etc.).
-* **Erros possíveis:**
+---
 
-  * `400 Bad Request` se faltar campo obrigatório.
-  * `400 Bad Request` se `cpf` ou `email` já existirem (violação de unicidade).
+## 2. Login
 
-### 2.2 Listar todos os usuários
-
-* **Método:** GET
-* **URL:** `https://api-projeto-hotel.vercel.app/usuarios`
-* **Headers:**
-
-```
-Authorization: Bearer <token_valido>
-```
-
-* **Esperado:** `200 OK` com array de usuários.
-
-### 2.3 Buscar usuário por ID
-
-* **Método:** GET
-* **URL:** `https://api-projeto-hotel.vercel.app/usuarios/:id`
-* **Headers:**
-
-```
-Authorization: Bearer <token_valido>
-```
-
-* **Esperado:** `200 OK` com dados do usuário ou `404 Not Found`.
-
-### 2.4 Atualizar usuário
-
-* **Método:** PATCH
-* **URL:** `https://api-projeto-hotel.vercel.app/usuarios/:id`
-* **Headers:**
-
-```
-Authorization: Bearer <token_valido>
-```
-
-* **Body (JSON):**
-
+### 2.1 POST /login
+**URL:** `https://api-projeto-hotel.vercel.app/login`  
+**Body JSON (válido):**
 ```json
 {
-  "nome": "Diego Atualizado",
-  "email": "diego.novo@teste.com"
+  "email": "lucas.souza@email.com",
+  "senha": "senha123",
+  "validade": 30
 }
 ```
+**Resposta esperada:** 200 OK + token JWT.
 
-* **Esperado:** `200 OK` com dados atualizados.
-
-### 2.5 Reset de usuário
-
-* **Método:** PATCH
-* **URL:** `https://api-projeto-hotel.vercel.app/usuarios`
-* **Body (JSON):**
-
+**Body JSON (inválido):**
 ```json
 {
-  "email": "usuario@teste.com"
+  "email": "lucas.souza@email.com",
+  "senha": "senhaErrada",
+  "validade": 30
 }
 ```
-
-* **Descrição:** redefine a senha para a provisória `"senha000"` (retorna `senhaProvisoria: "senha000"` no corpo) e atualiza a senha no banco (hash).
-* **Esperado:** `202 Accepted` com JSON contendo o usuário atualizado e `senhaProvisoria`.
-* **Erros possíveis:**
-
-  * `400 Bad Request` se o email não for enviado.
-  * `400 Bad Request` se o email não existir.
-  * `500 Internal Server Error` se houver falha no update.
-
-### 2.6 Remover usuário
-
-* **Método:** DELETE
-* **URL:** `https://api-projeto-hotel.vercel.app/usuarios/:id`
-* **Headers:**
-
-```
-Authorization: Bearer <token_valido>
-```
-
-* **Esperado:** `204 No Content` (ou `200 OK` com confirmação, dependendo da implementação).
+**Resposta esperada:** 400 Erro de login.
 
 ---
 
-## 3. Telefones
+### 2.2 GET /login (validação)
+**URL:** `https://api-projeto-hotel.vercel.app/login`  
+**Headers:**
+```
+Authorization: Bearer <token válido>
+```
+**Resposta esperada:** 200 OK  
 
-### 3.1 Criar telefone
+**Com token inválido:** 401 Unauthorized
 
-* **Método:** POST
-* **URL:** `https://api-projeto-hotel.vercel.app/telefones`
-* **Body (JSON):**
+---
 
+## 3. Usuários
+
+### 3.1 POST /usuarios
+**URL:** `https://api-projeto-hotel.vercel.app/usuarios`  
+```json
+{
+  "nome": "Lucas Souza",
+  "cpf": "12345678901",
+  "email": "lucas.souza@email.com",
+  "senha": "senha123"
+}
+```
+**Resposta esperada:** 201 Criado
+
+---
+
+### 3.2 GET /usuarios
+**URL:** `https://api-projeto-hotel.vercel.app/usuarios`  
+**Headers:**
+```
+Authorization: Bearer <token válido>
+```
+
+---
+
+### 3.3 PATCH /usuarios (reset senha)
+**URL:** `https://api-projeto-hotel.vercel.app/usuarios`  
+```json
+{
+  "email": "lucas.souza@email.com"
+}
+```
+**Resposta esperada:** 202 Email enviado
+
+---
+
+### 3.4 PATCH /usuarios/:id
+**URL:** `https://api-projeto-hotel.vercel.app/usuarios/1`  
+```json
+{
+  "nome": "Lucas Souza Atualizado",
+  "email": "lucas.novo@email.com",
+  "senha": "novaSenha123"
+}
+```
+**Headers:**
+```
+Authorization: Bearer <token válido>
+```
+
+---
+
+### 3.5 GET /usuarios/:id
+**URL:** `https://api-projeto-hotel.vercel.app/usuarios/1`  
+**Headers:**
+```
+Authorization: Bearer <token válido>
+```
+
+---
+
+### 3.6 DELETE /usuarios/:id
+**URL:** `https://api-projeto-hotel.vercel.app/usuarios/1`  
+**Headers:**
+```
+Authorization: Bearer <token válido>
+```
+
+---
+
+## 4. Telefones
+
+### 4.1 POST /telefones
+**URL:** `https://api-projeto-hotel.vercel.app/telefones`  
 ```json
 {
   "usuarioId": 1,
-  "numero": "(11) 99999-9999"
+  "numero": "19998887766"
 }
 ```
 
-* **Esperado:** `201 Created` com dados do telefone.
+### 4.2 GET /telefones
+**URL:** `https://api-projeto-hotel.vercel.app/telefones`
 
-### 3.2 Listar telefones
-
-* **Método:** GET
-* **URL:** `https://api-projeto-hotel.vercel.app/telefones`
-* **Esperado:** `200 OK` com array de telefones.
-
-### 3.3 Atualizar telefone
-
-* **Método:** PATCH
-* **URL:** `https://api-projeto-hotel.vercel.app/telefones/:id`
-* **Body (JSON):**
-
-```json
-{
-  "numero": "(11) 98888-8888"
-}
-```
-
-* **Esperado:** `200 OK` com dados atualizados.
-
-### 3.4 Remover telefone
-
-* **Método:** DELETE
-* **URL:** `https://api-projeto-hotel.vercel.app/telefones/:id`
-* **Esperado:** `200 OK` com confirmação.
-
----
-
-## 4. Quartos
-
-### 4.1 Criar quarto
-
-* **Método:** POST
-* **URL:** `https://api-projeto-hotel.vercel.app/quartos`
-* **Body (JSON):**
-
-```json
-{
-  "numero": "101",
-  "descricao": "Quarto Luxo",
-  "foto": "https://exemplo.com/quarto101.jpg",
-  "totalOspedes": 3
-}
-```
-
-* **Esperado:** `201 Created` com dados do quarto.
-
-### 4.2 Listar quartos
-
-* **Método:** GET
-* **URL:** `https://api-projeto-hotel.vercel.app/quartos`
-* **Esperado:** `200 OK` com array de quartos.
-
-### 4.3 Buscar quarto por ID
-
-* **Método:** GET
-* **URL:** `https://api-projeto-hotel.vercel.app/quartos/:id`
-* **Esperado:** `200 OK` com dados do quarto ou `404 Not Found`.
-
-### 4.4 Atualizar quarto
-
-* **Método:** PATCH
-* **URL:** `https://api-projeto-hotel.vercel.app/quartos/:id`
-* **Body (JSON):**
-
-```json
-{
-  "preco": 350
-}
-```
-
-* **Esperado:** `200 OK` com dados atualizados.
-
-### 4.5 Remover quarto
-
-* **Método:** DELETE
-* **URL:** `https://api-projeto-hotel.vercel.app/quartos/:id`
-* **Esperado:** `200 OK` com confirmação.
-
----
-
-## 5. Reservas
-
-### 5.1 Criar reserva
-
-* **Método:** POST
-* **URL:** `https://api-projeto-hotel.vercel.app/reservas`
-* **Body (JSON):**
-
+### 4.3 PATCH /telefones/:id
+**URL:** `https://api-projeto-hotel.vercel.app/telefones/1`  
 ```json
 {
   "usuarioId": 1,
-  "quartoId": 101,
-  "dataEntrada": "2025-10-10",
-  "dataSaida": "2025-10-15"
+  "numero": "19997776655"
 }
 ```
 
-* **Esperado:** `201 Created` com dados da reserva.
+### 4.4 GET /telefones/:id
+**URL:** `https://api-projeto-hotel.vercel.app/telefones/1`
 
-### 5.2 Listar reservas
-
-* **Método:** GET
-* **URL:** `https://api-projeto-hotel.vercel.app/reservas`
-* **Esperado:** `200 OK` com array de reservas.
-
-### 5.3 Buscar reserva por ID
-
-* **Método:** GET
-* **URL:** `https://api-projeto-hotel.vercel.app/reservas/:id`
-* **Esperado:** `200 OK` com dados da reserva ou `404 Not Found`.
-
-### 5.4 Atualizar reserva
-
-* **Método:** PATCH
-* **URL:** `https://api-projeto-hotel.vercel.app/reservas/:id`
-* **Body (JSON):**
-
-```json
-{
-  "dataSaida": "2025-10-18"
-}
-```
-
-* **Esperado:** `200 OK` com dados atualizados.
-
-### 5.5 Remover reserva
-
-* **Método:** DELETE
-* **URL:** `https://api-projeto-hotel.vercel.app/reservas/:id`
-* **Esperado:** `200 OK` com confirmação.
+### 4.5 DELETE /telefones/:id
+**URL:** `https://api-projeto-hotel.vercel.app/telefones/1`
 
 ---
 
-## Observações finais
+## 5. Quartos
 
-* Garanta que `cpf` e `email` sejam únicos ao criar usuários (use valores diferentes para testes repetidos).
-* Se a API não aceitar nested create para `telefone` dentro da criação de `usuario`, use primeiro `POST /usuarios` e depois `POST /telefones` com `usuarioId`.
-* O endpoint de reset (`PATCH /usuarios`) espera apenas `{ "email": "..." }` e retorna a senha provisória `"senha000"` no corpo da resposta.
+### 5.1 POST /quartos
+**URL:** `https://api-projeto-hotel.vercel.app/quartos`  
+```json
+{
+  "numero": "201",
+  "descricao": "Quarto solteiro com varanda",
+  "foto": "quarto2.jpg",
+  "totalOspedes": 1
+}
+```
+
+### 5.2 GET /quartos
+**URL:** `https://api-projeto-hotel.vercel.app/quartos`
+
+### 5.3 PATCH /quartos/:id
+**URL:** `https://api-projeto-hotel.vercel.app/quartos/1`  
+```json
+{
+  "numero": "201",
+  "descricao": "Quarto solteiro atualizado",
+  "foto": "quarto2.jpg",
+  "totalOspedes": 1
+}
+```
+
+### 5.4 GET /quartos/:id
+**URL:** `https://api-projeto-hotel.vercel.app/quartos/1`
+
+### 5.5 DELETE /quartos/:id
+**URL:** `https://api-projeto-hotel.vercel.app/quartos/1`
+
+---
+
+## 6. Reservas
+
+### 6.1 POST /reservas
+**URL:** `https://api-projeto-hotel.vercel.app/reservas`  
+```json
+{
+  "usuarioId": 1,
+  "quartoId": 2,
+  "dataEntradaPrevista": "2025-10-01T14:00:00.000Z",
+  "dataSaidaPrevista": "2025-10-05T12:00:00.000Z",
+  "quantidadeOspedes": 1
+}
+```
+
+### 6.2 GET /reservas
+**URL:** `https://api-projeto-hotel.vercel.app/reservas`
+
+### 6.3 PATCH /reservas/:id
+**URL:** `https://api-projeto-hotel.vercel.app/reservas/1`  
+```json
+{
+  "usuarioId": 1,
+  "quartoId": 2,
+  "dataEntradaPrevista": "2025-10-01T14:00:00.000Z",
+  "dataSaidaPrevista": "2025-10-06T12:00:00.000Z",
+  "dataEntrada": null,
+  "dataSaida": null,
+  "quantidadeOspedes": 1
+}
+```
+
+### 6.4 GET /reservas/:id
+**URL:** `https://api-projeto-hotel.vercel.app/reservas/1`
+
+### 6.5 DELETE /reservas/:id
+**URL:** `https://api-projeto-hotel.vercel.app/reservas/1`
