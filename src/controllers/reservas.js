@@ -22,7 +22,6 @@ const readOne = async (req, res) => {
         const reserva = await prisma.reserva.findUnique({
             select: {
                 id: true,
-                numero: true,
                 usuario: true,
                 quarto: true,
                 dataReserva: true,
