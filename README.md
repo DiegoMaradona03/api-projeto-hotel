@@ -30,7 +30,7 @@ npx prisma migrate dev --name init
 npm run dev
 ```
 
-# Roteiro de Testes da API
+# API Hotel – Roteiro de Testes
 
 Base da API: `https://api-projeto-hotel.vercel.app/`
 
@@ -121,7 +121,22 @@ Authorization: Bearer <token_valido>
 ```
 - **Esperado:** `200 OK` com dados atualizados.
 
-### 2.5 Remover usuário
+### 2.5 Reset de usuário
+- **Método:** PATCH  
+- **URL:** `https://api-projeto-hotel.vercel.app/usuarios`  
+- **Body (JSON):**
+```json
+{
+  "email": "usuario@teste.com"
+}
+```
+- **Esperado:** `202 Accepted` com JSON contendo o usuário atualizado e senha provisória `"senha000"`.  
+- **Erros possíveis:**
+  - `400 Bad Request` se o email não for enviado.
+  - `400 Bad Request` se o email não existir.
+  - `500 Internal Server Error` se houver falha no update.
+
+### 2.6 Remover usuário
 - **Método:** DELETE  
 - **URL:** `https://api-projeto-hotel.vercel.app/usuarios/:id`  
 - **Headers:**  
