@@ -23,8 +23,8 @@ const readOne = async (req, res) => {
             select: {
                 id: true,
                 numero: true,
-                usuario: true,
-                quarto: true,
+                usuarioId: true,
+                quartoId: true,
                 dataReserva: true,
                 dataEntradaPrevista: true,
                 dataSaidaPrevista: true,
