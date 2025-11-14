@@ -1,0 +1,1036 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API do Hotel (Node + Prisma + MySQL[MariaDB])",
+        "version": "1.0.0",
+        "description": "Documentação da API de teste geral da API, API de Rotas de Login, API de Usuarios, API de Telefones, API de Quartos, API de Reservas com Node.js, Prisma e MySQL (MariaDB).<br>Criada para TCC em grupo do curso de Desenvolvimento de Sistemas do SENAI 2025.",
+        "contact": {
+            "name": "Aluno do SENAI",
+            "email": "example@gmail.com",
+            "url": "https://github.com/DiegoMaradona03"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3600",
+            "description": "Servidor local"
+        },
+        {
+            "url": "https://api-projeto-hotel.vercel.app/",
+            "description": "Servidor Nuvem Vercel"
+        }
+    ],
+    "securityDefinitions": {
+        "bearerAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer token para autenticação",
+            "scheme": "bearer",
+            "bearer format": "JWT",
+            "bearer token": "JWT <token>",
+            "bearer token description": "Bearer token para autenticação"
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearer format": "JWT"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Teste",
+            "description": "Endpoint de teste da API"
+        },
+        {
+            "name": "Rotas de Login",
+            "description": "Endpoints de login"
+        },
+        {
+            "name": "CRUD de Usuarios",
+            "description": "Endpoints de usuarios"
+        },
+        {
+            "name": "CRUD de Telefones",
+            "description": "Endpoints de telefones"
+        },
+        {
+            "name": "CRUD de Quartos",
+            "description": "Endpoints de quartos"
+        },
+        {
+            "name": "CRUD de Reservas",
+            "description": "Endpoints de reservas"
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "tags": [
+                    "Teste"
+                ],
+                "summary": "Endpoint de teste geral da API",
+                "responses": {
+                    "200": {
+                        "description": "Retorna uma mensagem de teste"
+                    },
+                    "500": {
+                        "description": "Erro ao processar a requisição"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "get": {
+                "tags": [
+                    "Rotas de Login"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Endpoint para validar o login",
+                "responses": {
+                    "200": {
+                        "description": "Login realizado com sucesso"
+                    },
+                    "401": {
+                        "description": "Token inválido ou expirado"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Rotas de Login"
+                ],
+                "summary": "Endpoint para fazer o login",
+                "requestBody": {
+                    "description": "Dados de login",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "default": "ana.silva@email.com"
+                                    },
+                                    "senha": {
+                                        "type": "string",
+                                        "default": "senha123"
+                                    },
+                                    "validade": {
+                                        "type": "integer",
+                                        "default": 30
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login realizado com sucesso"
+                    },
+                    "400": {
+                        "description": "Erro ao fazer login, verifique e-mail e senha"
+                    }
+                }
+            }
+        },
+        "/usuarios": {
+            "get": {
+                "tags": [
+                    "CRUD de Usuarios"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Endpoint para obter todos os usuários",
+                "responses": {
+                    "200": {
+                        "description": "Lista de usuários cadastrados"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "CRUD de Usuarios"
+                ],
+                "summary": "Endpoint para cadastrar novo usuário",
+                "requestBody": {
+                    "description": "Dados de login",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string",
+                                        "default": "Ana Silva"
+                                    },
+                                    "cpf": {
+                                        "type": "string",
+                                        "default": "54381588567"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "default": "ana.silva@email.com"
+                                    },
+                                    "senha": {
+                                        "type": "string",
+                                        "default": "senha123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Novo usuário"
+                    },
+                    "400": {
+                        "description": "Erro ao cadastrar usuário, envie nome, email e senha"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "CRUD de Usuarios"
+                ],
+                "summary": "Endpoint para quando usuário esquecer a senha e deseja Resetar",
+                "requestBody": {
+                    "description": "Dados do usuário",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "default": "ana.silva@email.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Email enviado ao usuário com nova senha provisória"
+                    },
+                    "400": {
+                        "description": "Erro ao resetar a senha do usuário usuário, verifique o email e envie novamente"
+                    }
+                }
+            }
+        },
+        "/usuarios/{id}": {
+            "get": {
+                "tags": [
+                    "CRUD de Usuarios"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Obter um usuário pelo ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do usuário",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuário encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "nome": {
+                                            "type": "string",
+                                            "example": "Ana Silva"
+                                        },
+                                        "cpf": {
+                                            "type": "string",
+                                            "example": "54381588567"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "ana.silva@email.com"
+                                        },
+                                        "telefone": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "example": "199971348235"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Usuário não encontrado"
+                    },
+                    "400": {
+                        "description": "Erro ao buscar usuário"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "CRUD de Usuarios"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Endpoint para alterar um usuário",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do usuário que deve ser alterado",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Dados de login",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string",
+                                        "default": "Ana Silva"
+                                    },
+                                    "cpf": {
+                                        "type": "string",
+                                        "default": "54381588567"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "default": "ana.silva@email.com"
+                                    },
+                                    "senha": {
+                                        "type": "string",
+                                        "default": "senha123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Usuário alterado"
+                    },
+                    "400": {
+                        "description": "Erro ao alterar usuário, envie nome ou email ou senha ou tipo"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "CRUD de Usuarios"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Endpoint para excluir um usuário",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do usuário que deve ser excluído",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Usuário excluído"
+                    },
+                    "400": {
+                        "description": "Erro ao excluir usuário."
+                    }
+                }
+            }
+        },
+        "/telefones": {
+            "get": {
+                "tags": [
+                    "CRUD de Telefones"
+                ],
+                "summary": "Endpoint para obter todos os telefones",
+                "responses": {
+                    "200": {
+                        "description": "Lista de telefones cadastrados"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "CRUD de Telefones"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Endpoint para cadastrar novo telefone",
+                "requestBody": {
+                    "description": "Dados do telefone",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "numero": {
+                                        "type": "string",
+                                        "default": "199971348235"
+                                    },
+                                    "usuarioId": {
+                                        "type": "integer",
+                                        "default": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Novo telefone cadastrado"
+                    },
+                    "400": {
+                        "description": "Erro ao cadastrar telefone, envie o numero novamente"
+                    }
+                }
+            }
+        },
+        "/telefones/{id}": {
+            "get": {
+                "tags": [
+                    "CRUD de Telefones"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Obter um telefone pelo ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do telefone",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Telefone encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "numero": {
+                                            "type": "string",
+                                            "example": "199971348235"
+                                        },
+                                        "usuarioId": {
+                                            "type": "integer",
+                                            "example": 1
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Telefone não encontrado"
+                    },
+                    "400": {
+                        "description": "Erro ao buscar telefone"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "CRUD de Telefones"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Endpoint para alterar um telefone",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do telefone que deve ser alterado",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Dados do telefone",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "numero": {
+                                        "type": "string",
+                                        "default": "199971348235"
+                                    },
+                                    "usuarioId": {
+                                        "type": "integer",
+                                        "default": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Telefone alterado"
+                    },
+                    "400": {
+                        "description": "Erro ao alterar telefone. Verifique os dados e tente novamente."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "CRUD de Telefones"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Endpoint para excluir um telefone",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do telefone que deve ser excluído",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Telefone excluído"
+                    },
+                    "400": {
+                        "description": "Erro ao excluir telefone."
+                    }
+                }
+            }
+        },
+        "/quartos": {
+            "get": {
+                "tags": [
+                    "CRUD de Quartos"
+                ],
+                "summary": "Endpoint para obter todos os quartos",
+                "responses": {
+                    "200": {
+                        "description": "Lista de quartos cadastrados"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "CRUD de Quartos"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Endpoint para cadastrar novo quarto",
+                "requestBody": {
+                    "description": "Dados do quarto",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "numero": {
+                                        "type": "string",
+                                        "default": "101"
+                                    },
+                                    "descricao": {
+                                        "type": "string",
+                                        "default": "Quarto de casal com varanda"
+                                    },
+                                    "foto": {
+                                        "type": "string",
+                                        "default": "quarto1.jpg"
+                                    },
+                                    "totalOspedes": {
+                                        "type": "integer",
+                                        "default": 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Novo quarto cadastrado"
+                    },
+                    "400": {
+                        "description": "Erro ao cadastrar quarto, envie o numero novamente"
+                    }
+                }
+            }
+        },
+        "/quartos/{id}": {
+            "get": {
+                "tags": [
+                    "CRUD de Quartos"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Obter um quarto pelo ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do quarto",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Quarto encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "numero": {
+                                            "type": "string",
+                                            "example": "101"
+                                        },
+                                        "descricao": {
+                                            "type": "string",
+                                            "example": "Quarto de casal com varanda"
+                                        },
+                                        "foto": {
+                                            "type": "string",
+                                            "example": "quarto1.jpg"
+                                        },
+                                        "totalOspedes": {
+                                            "type": "integer",
+                                            "example": 2
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Quarto não encontrado"
+                    },
+                    "400": {
+                        "description": "Erro ao buscar quarto"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "CRUD de Quartos"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Endpoint para alterar um quarto",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do quarto que deve ser alterado",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Dados do quarto",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "numero": {
+                                        "type": "string",
+                                        "default": "101"
+                                    },
+                                    "descricao": {
+                                        "type": "string",
+                                        "default": "Quarto de casal com varanda"
+                                    },
+                                    "foto": {
+                                        "type": "string",
+                                        "default": "quarto1.jpg"
+                                    },
+                                    "totalOspedes": {
+                                        "type": "integer",
+                                        "default": 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Quarto alterado"
+                    },
+                    "400": {
+                        "description": "Erro ao alterar quarto. Verifique os dados e tente novamente."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "CRUD de Quartos"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Endpoint para excluir um quarto",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do quarto que deve ser excluído",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Quarto excluído"
+                    },
+                    "400": {
+                        "description": "Erro ao excluir quarto."
+                    }
+                }
+            }
+        },
+        "/reservas": {
+            "get": {
+                "tags": [
+                    "CRUD de Reservas"
+                ],
+                "summary": "Endpoint para obter todos as reservas",
+                "responses": {
+                    "200": {
+                        "description": "Lista de reservas cadastradas"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "CRUD de Reservas"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Endpoint para cadastrar nova reserva",
+                "requestBody": {
+                    "description": "Dados da reserva",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "usuarioId": {
+                                        "type": "integer",
+                                        "default": 1
+                                    },
+                                    "quartoId": {
+                                        "type": "integer",
+                                        "default": 1
+                                    },
+                                    "dataEntradaPrevista": {
+                                        "type": "string",
+                                        "default": "2025-09-03T10:00:00.000Z"
+                                    },
+                                    "dataSaidaPrevista": {
+                                        "type": "string",
+                                        "default": "2025-09-15T12:00:00.000Z"
+                                    },
+                                    "quantidadeOspedes": {
+                                        "type": "integer",
+                                        "default": 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Nova reserva cadastrada"
+                    },
+                    "400": {
+                        "description": "Erro ao cadastrar reserva, envie o numero novamente"
+                    }
+                }
+            }
+        },
+        "/reservas/{id}": {
+            "get": {
+                "tags": [
+                    "CRUD de Reservas"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Obter uma reserva pelo ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do reserva",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Reserva encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "usuarioId": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "quartoId": {
+                                            "type": "integer",
+                                            "example": 101
+                                        },
+                                        "dataReserva": {
+                                            "type": "string",
+                                            "example": "2025-09-03T10:00:00.000Z"
+                                        },
+                                        "dataEntradaPrevista": {
+                                            "type": "string",
+                                            "default": "2025-09-03T10:00:00.000Z"
+                                        },
+                                        "dataSaidaPrevista": {
+                                            "type": "string",
+                                            "default": "2025-09-15T12:00:00.000Z"
+                                        },
+                                        "dataEntrada": {
+                                            "type": "string",
+                                            "example": null
+                                        },
+                                        "dataSaida": {
+                                            "type": "string",
+                                            "example": null
+                                        },
+                                        "quantidadeOspedes": {
+                                            "type": "integer",
+                                            "example": 2
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Reserva não encontrada"
+                    },
+                    "400": {
+                        "description": "Erro ao buscar reserva"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "CRUD de Reservas"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Endpoint para alterar uma reserva",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID da reserva que deve ser alterada",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Dados da reserva",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "usuarioId": {
+                                        "type": "integer",
+                                        "default": 1
+                                    },
+                                    "quartoId": {
+                                        "type": "integer",
+                                        "default": 1
+                                    },
+                                    "dataEntradaPrevista": {
+                                        "type": "string",
+                                        "default": "2025-09-03T10:00:00.000Z"
+                                    },
+                                    "dataSaidaPrevista": {
+                                        "type": "string",
+                                        "default": "2025-09-15T12:00:00.000Z"
+                                    },
+                                    "dataEntrada": {
+                                        "type": "string",
+                                        "default": null
+                                    },
+                                    "dataSaida": {
+                                        "type": "string",
+                                        "default": null
+                                    },
+                                    "quantidadeOspedes": {
+                                        "type": "integer",
+                                        "default": 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Reserva alterada"
+                    },
+                    "400": {
+                        "description": "Erro ao alterar reserva. Verifique os dados e tente novamente."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "CRUD de Reservas"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Endpoint para excluir uma reserva",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID da reserva que deve ser excluída",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Reserva excluída"
+                    },
+                    "400": {
+                        "description": "Erro ao excluir reserva."
+                    }
+                }
+            }
+        }
+    }
+}
