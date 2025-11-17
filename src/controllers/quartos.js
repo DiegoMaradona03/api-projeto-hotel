@@ -17,9 +17,12 @@ const read = async (req, res) => {
         include: {
             reservas: {
                 where: {
-                    dataSaida: null
+                    dataSaida: null,
+                    dataSaidaPrevista: {
+                        gte: new Date()
+                    }
                 },
-                orderBy: { dataSaidaPrevista: 'desc' },
+                orderBy: { dataSaidaPrevista: 'asc' },
                 take: 1
             }
         }
