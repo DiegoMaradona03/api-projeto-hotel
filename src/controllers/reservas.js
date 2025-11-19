@@ -24,23 +24,24 @@ const create = async (req, res) => {
                 error: "Data Inválida."
             });
         }
-        const conflito = await prisma.reserva.findFirst({
+        const duplicata = await prisma.reserva.findFirst({
             where: {
+                usuarioId: req.body.usuarioId,
                 quartoId: quartoId,
+                dataEntradaPrevista: entrada,
+                dataSaidaPrevista: saida,
                 dataSaida: null,
-                dataSaidaPrevista: {
-                    gte: entrada
-                },
-                dataEntradaPrevista: {
-                    lte: saida
+                dataEntrada: null,
+                dataReserva: {
+                    gte: new Date(Date.now() - 3000)
                 }
             }
         });
-        if (conflito) {
-            return res.status(400).json({
-                error: "Este quarto já foi reservado antes."
-            });
+
+        if (duplicata) {
+            return res.status(200).json(duplicata);
         }
+
 
         const reserva = await prisma.reserva.create({
             data: req.body
