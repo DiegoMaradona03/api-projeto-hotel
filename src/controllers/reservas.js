@@ -12,6 +12,7 @@ const create = async (req, res) => {
         const entrada = new Date(dataEntradaPrevista);
         const saida = new Date(dataSaidaPrevista);
         const agora = new Date();
+        agora.setHours(0, 0, 0, 0);
 
         if (entrada < agora || saida < agora) {
             return res.status(400).json({
