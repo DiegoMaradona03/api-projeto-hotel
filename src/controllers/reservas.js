@@ -3,6 +3,44 @@ const prisma = new PrismaClient();
 
 const create = async (req, res) => {
     try {
+        const {
+            quartoId,
+            dataEntradaPrevista,
+            dataSaidaPrevista
+        } = req.body;
+
+        const entrada = new Date(dataEntradaPrevista);
+        const saida = new Date(dataSaidaPrevista);
+        const agora = new Date();
+
+        if (entrada < agora || saida < agora) {
+            return res.status(400).json({
+                error: "Data Inválida."
+            });
+        }
+        if (saida <= entrada) {
+            return res.status(400).json({
+                error: "Data Inválida."
+            });
+        }
+        const conflito = await prisma.reserva.findFirst({
+            where: {
+                quartoId: quartoId,
+                dataSaida: null,
+                dataSaidaPrevista: {
+                    gte: entrada
+                },
+                dataEntradaPrevista: {
+                    lte: saida
+                }
+            }
+        });
+        if (conflito) {
+            return res.status(400).json({
+                error: "Este quarto já foi reservado antes."
+            });
+        }
+
         const reserva = await prisma.reserva.create({
             data: req.body
         });
@@ -18,24 +56,24 @@ const read = async (req, res) => {
 }
 
 const readOne = async (req, res) => {
-        const reserva = await prisma.reserva.findUnique({
-            select: {
-                id: true,
-                usuario: true,
-                quarto: true,
-                dataReserva: true,
-                dataEntradaPrevista: true,
-                dataSaidaPrevista: true,
-                dataEntrada: true,
-                dataSaida: true,
-                quantidadeOspedes: true,
-                avaliacao: true
-            },
-            where: {
-                id: Number(req.params.id)
-            }
-        });
-        return res.json(reserva);
+    const reserva = await prisma.reserva.findUnique({
+        select: {
+            id: true,
+            usuario: true,
+            quarto: true,
+            dataReserva: true,
+            dataEntradaPrevista: true,
+            dataSaidaPrevista: true,
+            dataEntrada: true,
+            dataSaida: true,
+            quantidadeOspedes: true,
+            avaliacao: true
+        },
+        where: {
+            id: Number(req.params.id)
+        }
+    });
+    return res.json(reserva);
 }
 
 const update = async (req, res) => {
