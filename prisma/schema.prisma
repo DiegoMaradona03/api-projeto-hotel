@@ -20,6 +20,8 @@ model Usuario {
   reservas    Reserva[]
   comentarios Comentario[]
   sessoes     Sessao[]
+  codigos2FA  Codigo2FA[]
+  resetSenhas ResetSenha[]
 }
 
 model Telefone {
