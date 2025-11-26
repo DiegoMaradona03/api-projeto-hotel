@@ -19,6 +19,7 @@ model Usuario {
   telefone    Telefone[]
   reservas    Reserva[]
   comentarios Comentario[]
+  sessoes     Sessao[]
 }
 
 model Telefone {
@@ -62,4 +63,36 @@ model Comentario {
   updatedAt DateTime @default(now())
 
   usuario Usuario @relation(fields: [usuarioId], references: [id])
+}
+
+model Sessao {
+  id         Int      @id @default(autoincrement())
+  usuarioId  Int
+  token      String   @unique @db.VarChar(255)
+  ip         String?  @db.VarChar(50)
+  userAgent  String?  @db.VarChar(255)
+  createdAt  DateTime @default(now())
+
+  usuario    Usuario  @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+}
+
+model Codigo2FA {
+  id         Int      @id @default(autoincrement())
+  usuarioId  Int
+  codigo     String   @db.VarChar(6)
+  criadoEm   DateTime @default(now())
+  expiraEm   DateTime
+  confirmado Boolean  @default(false)
+
+  usuario    Usuario  @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+}
+
+model ResetSenha {
+  id         Int      @id @default(autoincrement())
+  usuarioId  Int
+  token      String   @unique @db.VarChar(255)
+  criadoEm   DateTime @default(now())
+  expiraEm   DateTime
+
+  usuario    Usuario  @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
 }
