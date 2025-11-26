@@ -8,14 +8,16 @@ datasource db {
 }
 
 model Usuario {
-  id       Int        @id @default(autoincrement())
-  nome     String     @db.VarChar(100)
-  cpf      String     @unique @db.VarChar(30)
-  email    String     @unique @db.VarChar(100)
-  senha    String     @db.VarChar(100)
-  fotoUrl   String?
-  telefone Telefone[]
-  reservas Reserva[]
+  id          Int          @id @default(autoincrement())
+  nome        String       @db.VarChar(100)
+  cpf         String       @unique @db.VarChar(30)
+  email       String       @unique @db.VarChar(100)
+  senha       String       @db.VarChar(100)
+  fotoUrl     String?
+  tema        String?      @db.VarChar(50)
+  idioma      String?      @db.VarChar(10)
+  telefone    Telefone[]
+  reservas    Reserva[]
   comentarios Comentario[]
 }
 
@@ -59,5 +61,5 @@ model Comentario {
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 
-  usuario   Usuario  @relation(fields: [usuarioId], references: [id])
+  usuario Usuario @relation(fields: [usuarioId], references: [id])
 }

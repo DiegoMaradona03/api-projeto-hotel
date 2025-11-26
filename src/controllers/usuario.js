@@ -20,23 +20,25 @@ const read = async (req, res) => {
 }
 
 const readOne = async (req, res) => {
-        const usuario = await prisma.usuario.findUnique({
-            select: {
-                id: true,
-                nome: true,
-                cpf: true,
-                email: true,
-                senha: true,
-                fotoUrl: true,
-                telefone: true,
-                reservas: true,
-                comentarios: true
-            },
-            where: {
-                id: Number(req.params.id)
-            }
-        });
-        return res.json(usuario);
+    const usuario = await prisma.usuario.findUnique({
+        select: {
+            id: true,
+            nome: true,
+            cpf: true,
+            email: true,
+            senha: true,
+            fotoUrl: true,
+            tema: true,
+            idioma: true,
+            telefone: true,
+            reservas: true,
+            comentarios: true
+        },
+        where: {
+            id: Number(req.params.id)
+        }
+    });
+    return res.json(usuario);
 }
 
 const update = async (req, res) => {
