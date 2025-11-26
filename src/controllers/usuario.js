@@ -27,8 +27,10 @@ const readOne = async (req, res) => {
                 cpf: true,
                 email: true,
                 senha: true,
+                fotoUrl: true,
                 telefone: true,
-                reservas: true
+                reservas: true,
+                comentarios: true
             },
             where: {
                 id: Number(req.params.id)

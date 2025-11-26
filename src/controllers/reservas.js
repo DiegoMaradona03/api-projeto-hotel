@@ -69,7 +69,8 @@ const readOne = async (req, res) => {
             dataEntrada: true,
             dataSaida: true,
             quantidadeOspedes: true,
-            avaliacao: true
+            avaliacao: true,
+            valorpago: true
         },
         where: {
             id: Number(req.params.id)

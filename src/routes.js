@@ -5,6 +5,7 @@ const Usuario = require('./controllers/usuario');
 const Telefone = require('./controllers/telefone');
 const Quarto = require('./controllers/quartos');
 const Reserva = require('./controllers/reservas');
+const Comentario = require('./controllers/comentario');
 const loginController = require('./controllers/login');
 const MiddlewareAuth = require('./middlewares/auth');
 
@@ -36,7 +37,13 @@ routes.get('/', (req, res) => {
       { verbo: 'GET', rota: '/reservas/:id' },
       { verbo: 'POST', rota: '/reservas' },
       { verbo: 'PATCH', rota: '/reservas/:id' },
-      { verbo: 'DELETE', rota: '/reservas/:id' }
+      { verbo: 'DELETE', rota: '/reservas/:id' },
+
+      { verbo: 'GET', rota: '/comentarios' },
+      { verbo: 'GET', rota: '/comentarios/:id' },
+      { verbo: 'POST', rota: '/comentarios' },
+      { verbo: 'PATCH', rota: '/comentarios/:id' },
+      { verbo: 'DELETE', rota: '/comentarios/:id' }
   ]});
 });
 
@@ -67,5 +74,11 @@ routes.get('/reservas/:id', Reserva.readOne);
 routes.post('/reservas', Reserva.create);
 routes.patch('/reservas/:id', Reserva.update);
 routes.delete('/reservas/:id', Reserva.remove);
+
+routes.get('/comentarios', Comentario.read);
+routes.get('/comentarios/:id', Comentario.readOne);
+routes.post('/comentarios', Comentario.create);
+routes.patch('/comentarios/:id', Comentario.update);
+routes.delete('/comentarios/:id', Comentario.remove);
 
 module.exports = routes;

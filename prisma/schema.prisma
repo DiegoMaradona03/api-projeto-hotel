@@ -13,8 +13,10 @@ model Usuario {
   cpf      String     @unique @db.VarChar(30)
   email    String     @unique @db.VarChar(100)
   senha    String     @db.VarChar(100)
+  fotoUrl   String?
   telefone Telefone[]
   reservas Reserva[]
+  comentarios Comentario[]
 }
 
 model Telefone {
@@ -45,6 +47,17 @@ model Reserva {
   dataSaida           DateTime?
   avaliacao           Int?
   quantidadeOspedes   Int?
+  valorpago           Int?
   usuario             Usuario   @relation(fields: [usuarioId], references: [id])
   quarto              Quarto?   @relation(fields: [quartoId], references: [id])
+}
+
+model Comentario {
+  id        Int      @id @default(autoincrement())
+  usuarioId Int
+  texto     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  usuario   Usuario  @relation(fields: [usuarioId], references: [id])
 }
