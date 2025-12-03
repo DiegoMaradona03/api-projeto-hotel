@@ -53,6 +53,12 @@ const readOne = async (req, res) => {
 
 const update = async (req, res) => {
     try {
+        if (req.body.senha && req.body.senha.trim() !== "") {
+            req.body.senha = await Middlewares.createHash(req.body.senha);
+        } else {
+            delete req.body.senha;
+        }
+
         const usuario = await prisma.usuario.update({
             where: {
                 id: Number(req.params.id)
