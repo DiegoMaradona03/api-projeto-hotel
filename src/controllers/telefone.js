@@ -3,6 +3,23 @@ const prisma = new PrismaClient();
 
 const create = async (req, res) => {
     try {
+        const { numero, usuarioId } = req.body;
+
+        if (!numero || !usuarioId) {
+            return res.status(400).json({ error: "Telefone e usuário são obrigatórios" });
+        }
+
+        const telefoneExistente = await prisma.telefone.findFirst({
+            where: {
+                numero: numero.trim(),
+                usuarioId: Number(usuarioId)
+            }
+        });
+
+        if (telefoneExistente) {
+            return res.status(400).json({ error: "Este telefone já está cadastrado na sua conta" });
+        }
+
         const telefone = await prisma.telefone.create({
             data: req.body
         });

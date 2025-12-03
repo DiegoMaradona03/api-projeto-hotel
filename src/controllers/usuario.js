@@ -4,6 +4,16 @@ const Middlewares = require('../middlewares/auth');
 
 const create = async (req, res) => {
     try {
+        if (req.body.telefone && req.body.telefone.create) {
+            req.body.telefone.create = req.body.telefone.create.filter(
+                (t) => t.numero && t.numero.trim() !== ""
+            );
+
+            if (req.body.telefone.create.length === 0) {
+                delete req.body.telefone;
+            }
+        }
+
         req.body.senha = await Middlewares.createHash(req.body.senha);
         const usuario = await prisma.usuario.create({
             data: req.body
