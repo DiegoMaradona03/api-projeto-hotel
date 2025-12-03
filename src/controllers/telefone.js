@@ -50,11 +50,35 @@ const readOne = async (req, res) => {
 
 const update = async (req, res) => {
     try {
-        const telefone = await prisma.telefone.update({
+        const novoNumero = req.body.numero?.trim();
+
+        if (!novoNumero || novoNumero === "") {
+            return res.status(400).json({ error: "Número de telefone não pode ser vazio" });
+        }
+
+        const telefoneAtual = await prisma.telefone.findUnique({
+            where: { id: Number(req.params.id) }
+        });
+
+        if (!telefoneAtual) {
+            return res.status(404).json({ error: "Telefone não encontrado" });
+        }
+
+        const telefoneExistente = await prisma.telefone.findFirst({
             where: {
-                id: Number(req.params.id)
-            },
-            data: req.body
+                usuarioId: telefoneAtual.usuarioId,
+                numero: novoNumero,
+                NOT: { id: Number(req.params.id) }
+            }
+        });
+
+        if (telefoneExistente) {
+            return res.status(400).json({ error: "Este número já está cadastrado na sua conta" });
+        }
+
+        const telefone = await prisma.telefone.update({
+            where: { id: Number(req.params.id) },
+            data: { numero: novoNumero }
         });
         return res.status(202).json(telefone);
     } catch (error) {
